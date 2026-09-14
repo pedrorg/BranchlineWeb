@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="index, follow">
+<title>Privacy Policy · Branchline</title>
+<link rel="icon" href="favicon-32.png" sizes="32x32">
+<style>
+  :root {
+    color-scheme: light dark;
+
+    /* Los mismos tokens que lib/app/theme/app_theme.dart. */
+    --ink: #17251F;
+    --page: #F2F2F0;
+    --card: #FFFFFF;
+    --line: #E4E4E1;
+    --muted: #6E756F;
+    --green: #2E7D5B;
+    --green-wash: #DCEFE4;
+    --signal: #C68A28;
+
+    /* Los de la portada de la tienda, para la banda oscura. */
+    --brand-dark: #0F3527;
+    --cream: #F2EFE6;
+    --gold: #E9B65C;
+
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  }
+
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --ink: #EDF2EF;
+      --page: #101714;
+      --card: #19211D;
+      --line: #2A332E;
+      --muted: #98A49D;
+      --green: #7FC79F;
+      --green-wash: #1B2A22;
+      --signal: #E9B65C;
+    }
+  }
+
+  * { box-sizing: border-box; }
+
+  body {
+    margin: 0;
+    background: var(--page);
+    color: var(--ink);
+    font: 16px/1.65 var(--sans);
+    -webkit-font-smoothing: antialiased;
+    /* La política enlaza a
+       `https://policies.google.com/technologies/partner-sites`, que en un móvil
+       de 390 px no cabe en una línea. Sin esto, esa URL ensancha el documento
+       entero: el texto se sale por la derecha y la cabecera se lleva por
+       delante el selector de idioma. */
+    overflow-wrap: break-word;
+  }
+
+  a { color: var(--green); }
+
+  .wordmark {
+    font-weight: 700;
+    letter-spacing: .075em;
+    /* Archivo va en ancho 108. Sin eje de anchura, un pelo de escala
+       horizontal se le acerca más que dejarlo tal cual. */
+    transform: scaleX(1.02);
+    transform-origin: left;
+  }
+
+  /* ── La banda de marca ───────────────────────────────────────────────── */
+
+  .hero {
+    position: relative;
+    background: var(--brand-dark);
+    color: var(--cream);
+    overflow: hidden;
+  }
+
+  /* Tres capas, igual que en la portada de la tienda: la rejilla del puzzle
+     muy bajita, un foco verde en la esquina de donde viene la luz y un
+     sumidero oscuro en la contraria. Sin ellas el verde plano se ve barato. */
+  .hero-bg { position: absolute; inset: 0; }
+  .hero-bg::before {
+    content: ''; position: absolute; inset: 0;
+    background:
+      repeating-linear-gradient(to right,  rgba(242,239,230,.05) 0 1.5px, transparent 1.5px 64px),
+      repeating-linear-gradient(to bottom, rgba(242,239,230,.05) 0 1.5px, transparent 1.5px 64px);
+  }
+  .hero-bg::after {
+    content: ''; position: absolute; inset: 0;
+    background:
+      radial-gradient(120% 90% at 8% -10%, rgba(46,125,91,.55), transparent 62%),
+      radial-gradient(110% 80% at 100% 108%, #081D15, transparent 58%);
+  }
+
+  .hero-inner {
+    position: relative;
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: 4.5rem 1.5rem 4rem;
+  }
+  .hero .mark { display: block; color: var(--cream); }
+  .hero .big {
+    font-size: clamp(2.1rem, 9vw, 3.5rem);
+    line-height: 1.05;
+    margin: 1.5rem 0 0;
+    color: var(--cream);
+  }
+  .eyebrow {
+    margin: 1.4rem 0 0;
+    font-size: .8rem;
+    font-weight: 600;
+    letter-spacing: .26em;
+    color: var(--gold);
+  }
+  .tagline {
+    margin: .9rem 0 0;
+    font-size: clamp(1.1rem, 4vw, 1.5rem);
+    font-weight: 500;
+    color: rgba(242,239,230,.7);
+  }
+
+  /* ── La barra de los documentos ──────────────────────────────────────── */
+
+  .bar {
+    background: var(--brand-dark);
+    color: var(--cream);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: .9rem 1.25rem;
+  }
+  .lockup {
+    display: flex; align-items: center; gap: .6rem;
+    color: var(--cream); text-decoration: none;
+  }
+  .bar .wordmark { font-size: .95rem; }
+  .bar .lang {
+    color: var(--gold); text-decoration: none;
+    font-size: .85rem; font-weight: 600; letter-spacing: .04em;
+  }
+  .bar .lang:hover { text-decoration: underline; }
+
+  /* ── El cuerpo ───────────────────────────────────────────────────────── */
+
+  .page, .doc { max-width: 46rem; margin: 0 auto; padding: 3rem 1.5rem 4rem; }
+
+  .lede p { font-size: 1.1rem; }
+  .lede p:first-child { margin-top: 0; }
+
+  .facts {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    gap: 1rem;
+    margin: 2.5rem 0 3rem;
+  }
+  .fact {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 1.1rem 1.2rem;
+  }
+  .fact strong {
+    display: block;
+    font-size: 1.4rem;
+    letter-spacing: -.01em;
+    color: var(--green);
+  }
+  .fact span { display: block; margin-top: .3rem; color: var(--muted); font-size: .92rem; }
+
+  .docs h2 {
+    font-size: .8rem; font-weight: 700; letter-spacing: .18em;
+    color: var(--muted); text-transform: uppercase;
+    padding-bottom: .6rem; border-bottom: 1px solid var(--line);
+  }
+  .cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(12rem, 1fr)); gap: 1rem 2rem; }
+  .cols h3 { font-size: 1rem; margin: 1.4rem 0 .4rem; }
+  .cols ul { margin: 0; padding-left: 1.1rem; }
+  .cols li { margin: .3rem 0; }
+
+  /* ── El documento legal ──────────────────────────────────────────────── */
+
+  .doc h1 { font-size: clamp(1.8rem, 6vw, 2.3rem); line-height: 1.15; margin: 0 0 1rem; letter-spacing: -.02em; }
+  .doc h2 {
+    font-size: 1.2rem; margin: 2.75rem 0 .75rem; letter-spacing: -.01em;
+    padding-top: 1.5rem; border-top: 1px solid var(--line);
+  }
+  .doc h3 { font-size: 1.02rem; margin: 1.9rem 0 .5rem; }
+
+  /* Los tres primeros párrafos son el nombre de la app, la fecha y el enlace al
+     otro idioma: metadatos, no texto. Van juntos y apagados para que el
+     documento empiece de verdad en el primer epígrafe. */
+  .doc > p:nth-of-type(-n+3) { color: var(--muted); margin: .25rem 0; }
+  .doc > p:nth-of-type(1) { margin-top: 0; }
+  .doc > p:nth-of-type(3) { margin-bottom: 2rem; }
+
+  .doc ul { padding-left: 1.2rem; }
+  .doc li { margin: .4rem 0; }
+  .doc code { font-size: .9em; background: var(--green-wash); padding: .1em .35em; border-radius: 4px; }
+  .doc hr { border: 0; border-top: 1px solid var(--line); margin: 2.5rem 0; }
+
+  /* La tabla de Data safety y cualquier otra: en un móvil de 360 px no cabe,
+     así que se desplaza dentro de su caja en vez de estirar la página. */
+  .doc table { border-collapse: collapse; width: 100%; display: block; overflow-x: auto; }
+  .doc td, .doc th { border: 1px solid var(--line); padding: .55rem .7rem; text-align: left; }
+  .doc th { background: var(--card); }
+
+  /* ── El pie ──────────────────────────────────────────────────────────── */
+
+  .foot {
+    max-width: 46rem;
+    margin: 0 auto;
+    padding: 1.5rem;
+    border-top: 1px solid var(--line);
+    display: flex; flex-wrap: wrap; gap: .5rem 1.5rem;
+    justify-content: space-between;
+    color: var(--muted); font-size: .88rem;
+  }
+</style>
+
+</head>
+<body>
+<header class="bar">
+  <a class="lockup" href="index.html">
+    <svg class="mark" width="26.0" height="26.0" viewBox="0 0 100 100" fill="none" aria-hidden="true">
+  <path d="M 12 22 H 40 Q 52 22 52 34 V 62 Q 52 74 64 74 H 88" stroke="currentColor"
+        stroke-width="26" stroke-dasharray="4 17" stroke-linecap="butt"/>
+  <path d="M 12 22 H 40 Q 52 22 52 34 V 62 Q 52 74 64 74 H 88" stroke="currentColor"
+        stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>
+    <span class="wordmark">BRANCHLINE</span>
+  </a>
+  <a class="lang" href="privacidad.html" hreflang="es">Español</a>
+</header>
+<main class="doc">
+<h1 id="privacy-policy">Privacy Policy</h1>
+<p><strong>Branchline — Train Tracks</strong></p>
+<p>Last updated: 28 August 2026</p>
+<p><em><a href="privacidad.html">Versión en español</a></em></p>
+<h2 id="the-short-version">The short version</h2>
+<p>Branchline has no accounts, no servers of ours, and no analytics. Your puzzle
+progress stays on your device and we never see it.</p>
+<p>The one exception is advertising. Branchline shows an optional reward video —
+only if you ask for a hint by tapping the hint button — and that video is served
+by <strong>Google AdMob</strong>, which does collect data. That part is described in full
+below.</p>
+<h2 id="what-the-app-stores-on-your-device">What the app stores on your device</h2>
+<p>Branchline saves a small amount of data locally so it can remember your progress
+between sessions:</p>
+<ul>
+<li>Which puzzles you have solved, how long each took, and how many hints you used</li>
+<li>Your daily puzzle results and your current streak</li>
+<li>Your appearance preferences (light, dark, or system theme; the board theme;
+the language)</li>
+</ul>
+<p>This data never leaves your device. It is not backed up to us, because there is
+no &quot;us&quot; to back it up to — Branchline itself has no server component.</p>
+<p>Uninstalling the app deletes all of it. You can also delete it at any time from
+<strong>Settings → Reset all progress</strong>.</p>
+<h2 id="advertising">Advertising</h2>
+<p>Branchline is free and has no paid version. It is funded by a single, optional
+advertisement: a reward video you can choose to watch to reveal one square of
+the puzzle you are solving. <strong>No advertisement is ever shown unless you tap the
+hint button</strong>, which is marked with a video symbol. There are no banners, no
+interstitials, and nothing that plays on its own.</p>
+<p>Those videos are delivered by <strong>Google AdMob</strong>. To serve them, Google's
+advertising software — which runs inside the app — collects and processes:</p>
+<ul>
+<li>Your device's <strong>advertising identifier</strong> (the Android Advertising ID), a
+resettable identifier used to limit repeated ads and to measure them</li>
+<li>Your <strong>IP address</strong>, which reveals your approximate location (typically your
+city or region)</li>
+<li><strong>Device and app information</strong>: device model, operating system version,
+language, and the fact that this app is Branchline</li>
+<li><strong>Ad interaction data</strong>: that an ad was requested, shown, watched to the end,
+or closed</li>
+</ul>
+<p>Branchline does not receive any of this. The app is told only whether you
+finished the video, so it knows whether to reveal the square. We have no access
+to your identifier, your IP address, or your location, and we never see who
+watched what.</p>
+<p>Google acts as an independent controller of the data it collects. How it uses
+that data is described here:</p>
+<ul>
+<li><strong>How Google uses information from sites or apps that use its services</strong> —
+<a href="https://policies.google.com/technologies/partner-sites">https://policies.google.com/technologies/partner-sites</a></li>
+<li><strong>Google Privacy Policy</strong> — <a href="https://policies.google.com/privacy">https://policies.google.com/privacy</a></li>
+</ul>
+<h3 id="your-choices">Your choices</h3>
+<ul>
+<li><strong>Don't watch.</strong> No ad is shown unless you ask for one. Never tapping the hint
+button means no ad request is ever made.</li>
+<li><strong>In the EU, EEA, UK and Switzerland</strong>, Branchline shows Google's consent
+form the first time it runs and asks whether you agree to personalised ads.
+You can change that answer at any time from <strong>Settings → Ad privacy options</strong>.
+If you decline, you will still see the reward video if you request it, but it
+will be non‑personalised.</li>
+<li><strong>On any device</strong>, you can reset or delete your advertising identifier in
+<strong>Android Settings → Privacy → Ads</strong>. Deleting it stops apps from receiving an
+advertising identifier at all.</li>
+</ul>
+<h2 id="what-the-app-does-not-do">What the app does not do</h2>
+<ul>
+<li>It does not ask for an account, an email address, or any personal detail</li>
+<li>It does not use analytics or crash reporting</li>
+<li>It does not track your location itself, and it never requests location
+permission</li>
+<li>It does not request access to your contacts, photos, camera, or microphone</li>
+<li>It does not sell or share your data with anyone, and it does not build a
+profile of you</li>
+<li>Apart from loading a reward video when you ask for one, it sends nothing over
+the network</li>
+</ul>
+<h2 id="sharing-a-result">Sharing a result</h2>
+<p>When you choose to share a solved puzzle, Branchline generates an image on your
+device and hands it to your operating system's standard share dialog. You then
+pick where it goes.</p>
+<p>Branchline does not see, record, or transmit what you share or who you share it
+with. Once the image reaches the app you chose — a messaging app, a social
+network, your photo library — that app's own privacy policy applies to it.</p>
+<h2 id="opening-external-links">Opening external links</h2>
+<p>Three options in <strong>Settings</strong> open something outside Branchline: <em>Rate the app</em>
+opens your device's app store listing, <em>Privacy policy</em> opens this page, and
+<em>Ad privacy options</em> opens Google's consent form. Each hands control over and
+stops there.</p>
+<h2 id="children">Children</h2>
+<p>Branchline is a logic puzzle suitable for all ages and is not directed at
+children. It collects no data of its own from anyone. Because it shows
+advertising, it is not enrolled in Google Play's Designed for Families
+programme; ad requests are made only when a player asks to watch one, and are
+tagged so that Google serves ads rated suitable for a general audience.</p>
+<h2 id="changes-to-this-policy">Changes to this policy</h2>
+<p>If a future version of Branchline changes what it stores or what it transmits,
+this policy will be updated before that version is published, and the date at
+the top will change.</p>
+<h2 id="contact">Contact</h2>
+<p>Questions about this policy go to the developer contact address shown on the
+Branchline listing on Google Play.</p>
+
+</main>
+<footer class="foot">
+  <a href="index.html">Branchline</a>
+  <span>A Train Tracks logic puzzle</span>
+</footer>
+</body>
+</html>
